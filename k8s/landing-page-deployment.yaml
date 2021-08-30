@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: landing-page-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: landing-page
+  template:
+    metadata:
+      labels:
+        component: landing-page
+    spec:
+      containers:
+        - name: landing-page
+          image: joshnavru/demo-landing-page
+          ports:
+            - containerPort: 5000

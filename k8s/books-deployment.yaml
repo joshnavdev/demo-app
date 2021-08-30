@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: books-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: books
+  template:
+    metadata:
+      labels:
+        component: books
+    spec:
+      containers:
+        - name: books
+          image: joshnavru/demo-books
+          ports:
+            - containerPort: 8000
