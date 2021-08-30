@@ -1,0 +1,42 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: joshnavru/demo-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      # sync:
+      #   manual:
+      #     - src: 'src/**/*.js'
+      #       dest: .
+    - image: joshnavru/demo-auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: joshnavru/demo-books
+      context: books
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: joshnavru/demo-landing-page
+      context: landing-page
+      docker:
+        dockerfile: Dockerfile
+      # sync:
+      #   manual:
+      #     - src: '*.js'
+      #       dest: .
