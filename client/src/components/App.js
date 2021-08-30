@@ -25,7 +25,7 @@ const Nav = () => {
 const App = () => {
   const loggedIn = true;
   return (
-    <Router>
+    <Router basename='/app'>
       <div>
         {loggedIn ? <Nav /> : null}
         <Switch>

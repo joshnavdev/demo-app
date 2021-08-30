@@ -10,6 +10,7 @@ function Books() {
       .get('/api/books/v0/books')
       // .get('http://localhost:8000/books')
       .then((response) => {
+        console.log(response);
         setBooks(response.data);
       })
       .catch((err) => {
